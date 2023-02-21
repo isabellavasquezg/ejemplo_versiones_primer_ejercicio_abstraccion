@@ -1,3 +1,4 @@
+#En esta versión la clase paciente no varía 
 class Paciente():
     def __init__(self):
         self.__nombre = ""
@@ -24,62 +25,62 @@ class Paciente():
         self.__servicio = s
 
 class Sistema():
-#Se crea una lista vacía para almacenar los pacientes ingresados 
   def __init__(self): 
     self.__lista_pacientes = [ ]
-#El atributo numero_pacientes  no puede tener asigando un método asignar debido
-#a que siempre dependerá del tamaño de la lista 
-    self.__numero_pacientes = len(self.__lista_pacientes)
 
-#Se crea un método (función) para el ingreso de los datos 
-  def ingresarPaciente(self): 
-    nombre = intput("Ingrese el nombre del paciente: \n ")
-    cedula = int(input("Ingrese la cédula del paciente: \n "))
-    genero = intput("Ingrese el género del paciente: \n ")
-    servicio = intput("Ingrese el servicio donde se encuentra alojado el paciente: \n ")
-#Luego se crean dentro del mismo método el objeto y se le adiciona la información 
-    p = Paciente()
-    p.asignarNombre(nombre)
-    p.asignarCedula(cedula)
-    p.asignarGenero(genero)
-    p.asignarServicio(servicio)
-#Agrego el objeto a la lista vacía que generé de pacientes 
-    self.__lista_pacientes.append(p)
-#Tambien debo actulizar la cantidad de pacientes en la lista 
-    self.__numero_pacientes = len(self.__lista_pacientes)
+  def ingresarPaciente(self,pac): 
+    self.__lista_pacientes.append(pac)
 
+  def verDatosPaciente(self,c): 
+#Se busca paciente por paciente 
+    for p in self.__lista_pacientes: 
+#Por cada paciente de la lisra, le digo al paciente que 
+#me retorne la cedula y la comparo con la ingresada por teclado 
+      if c == pe.verCedula(): 
+        return p #si encuentra el paciente lo retorna
   def verNumeroPacientes(self): 
-    return self.__numero_pacientes 
-  def verDatosPaciente(self): 
-    cedula = int(input("Ingrese el número de documento del paciente que desea buscar: \n))
-    for paciente in self.__lista_pacientes:
-      if cedula == paciente.verCedula(): 
+    print(f"Al momento hay: " +str(len(self.__lista_pacientes))} pacientes + "pacientes")
+
+#Se crea la nueva función Main 
+  def main(): 
+    sis = Sistema()
+  while True: 
+    opcion = int(input('''
+  
+  Sistema informático (Ingrese 0, 1, 2, 3 o 4 según lo requiera):
+
+  0. Salir del sistema
+  1. Ingresar un nuevo paciente
+  2. Ver los datos de un paciente  \n'''))
+    if opcion == 1:
+#Se solicitan los datos 
+      print("A continuación se solicitará los datos...\n")
+      nombre = intput("Ingrese el nombre del paciente: \n ")
+      cedula = int(input("Ingrese la cédula del paciente: \n "))
+      genero = intput("Ingrese el género del paciente: \n ")
+      servicio = intput("Ingrese el servicio donde se encuentra alojado el paciente: \n ")
+#Se crea el objeto paciente 
+      pac = Paciente()
+#Se le asigna la información al objeto 
+      pac.asignarNombre(nombre)
+      pac.asignarCedula(cedula)
+      pac.asignarGenero(genero)
+      pac.asignarServicio(servicio)
+#Se almacena en la lista que se creó dentro de la clase sistema 
+      sis.ingresarPaciente(pac)
+    elif opcion == 2: 
+#Se solicita la cédula que se quiere buscar
+      c = int(input("Ingrese el número de documento del paciente que desea buscar: \n))
+      p = sist.verDatosPaciente(c)
       print("Nombre: " + paciente.verNombre())
       print("Cédula: " + str(paciente.verCedula()))
       print("Género: " + paciente.verGenero())
       print("Servicio: " + paciente.verServicio())
+    elif opcion != 0: 
+      continue 
+    else: 
+      break 
 
-#Ahora, llamamos a la clase sistema para que se puedan utilizar los métodos que allí se crearon
-mi_sistema = Sistema()
-
-#Creamos el ciclo While 
-
-while True: 
-  opcion = int(input('''
-  
-  Sistema informático (Ingrese 1, 2, 3 o 4 según lo requiera):
-
-  1. Ingresar un nuevo pacientes 
-  2. Ver en pantalla el número de pacientes 
-  3. Ver los datos de un paciente 
-  4. Salir del sistema  \n'''))
-  if opcion == 1:
-    mi_sistema.ingresarPaciente()
-  elif opcion == 2: 
-    print(f"Al momento hay: {str(mi_sistema.verNumeroPacinetes())} pacientes")
-  elif opcion == 3: 
-    mi_sistema.verDatosPaciente()
-  elif opcion == 4: 
-    break 
-  else: 
-    print("Opción inválida")
+#Con esto, python descubre cual es la función principal 
+if __name__ == "__main__": 
+  main()
