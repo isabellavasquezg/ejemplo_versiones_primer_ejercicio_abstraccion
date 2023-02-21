@@ -1,4 +1,4 @@
-#En esta versión la clase paciente no varía 
+#La clase paciente no se modifica
 class Paciente():
     def __init__(self):
         self.__nombre = ""
@@ -24,20 +24,31 @@ class Paciente():
     def asignarServicio(self,s):
         self.__servicio = s
 
-class Sistema():
+class Sistema(objeto): 
   def __init__(self): 
-    self.__lista_pacientes = [ ]
+    self.__lista_pacientes = []
+  
+  def verificarPaciente(self,cedula): 
+    encontrado = False: 
+    for p in self.__lista_pacientes: 
+      if cedula == p.verCedula(): 
+      encontrado = True: 
+      break: 
+    return econtrado 
 
   def ingresarPaciente(self,pac): 
     self.__lista_pacientes.append(pac)
 
   def verDatosPaciente(self,c): 
 #Se busca paciente por paciente 
+    if self.verificacionPaciente() == False: 
+      return None 
     for p in self.__lista_pacientes: 
-#Por cada paciente de la lisra, le digo al paciente que 
+#Por cada paciente de la lista, le digo al paciente que 
 #me retorne la cedula y la comparo con la ingresada por teclado 
       if c == pe.verCedula(): 
         return p #si encuentra el paciente lo retorna
+  
   def verNumeroPacientes(self): 
     print(f"Al momento hay: " +str(len(self.__lista_pacientes))} pacientes + "pacientes")
 
@@ -67,7 +78,11 @@ class Sistema():
       pac.asignarGenero(genero)
       pac.asignarServicio(servicio)
 #Se almacena en la lista que se creó dentro de la clase sistema 
-      sis.ingresarPaciente(pac)
+      resultado = sis.ingresarPaciente(pac)
+      if resultado == False:
+        print("Ya existe un ususario con este número de cédula en nuestra base de datos: ")
+        else: 
+          print("Se ingresó correctamente el paciente") 
     elif opcion == 2: 
 #Se solicita la cédula que se quiere buscar
       c = int(input("Ingrese el número de documento del paciente que desea buscar: \n))
